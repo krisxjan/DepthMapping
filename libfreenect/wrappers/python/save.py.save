@@ -1,0 +1,25 @@
+import freenect
+import cv2
+import frame_convert2
+
+print('Press ESC in window to stop')
+
+def get_depth():
+    return frame_convert2.pretty_depth_cv(freenect.sync_get_depth()[0])
+
+
+def get_video():
+    return frame_convert2.video_cv(freenect.sync_get_video()[0])
+
+i = 0;
+
+d = input("Press p to capture")
+v = input("Save video file as: ") 
+
+
+def save_video(d,v) 
+    file = 'depth/newDepth%s.jpg' %i
+    file2 = 'video/newVideo%s.jpg' %i
+    cv2.imwrite(file, get_depth())
+    cv2.imwrite(file2, get_video())
+    i+=1
